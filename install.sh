@@ -50,11 +50,11 @@ echo "Configuring Fastfetch..."
 mkdir -p ~/.config/fastfetch
 
 if [ "$DISTRO_ID" = "opensuse-tumbleweed" ]; then
-    cp configs/fastfetch-tumbleweed.jsonc ~/.config/fastfetch/config.jsonc
+    cp fastfetch/fastfetch-tumbleweed.jsonc ~/.config/fastfetch/config.jsonc
     # Optional: Inject the Tumbleweed branding
     sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME/g" ~/.config/fastfetch/config.jsonc
 elif [ "$DISTRO_ID" = "opensuse-leap" ]; then
-    cp configs/fastfetch-leap.jsonc ~/.config/fastfetch/config.jsonc
+    cp fastfetch/fastfetch-leap.jsonc ~/.config/fastfetch/config.jsonc
     # Optional: Inject the Leap branding
     sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME/g" ~/.config/fastfetch/config.jsonc
 fi
