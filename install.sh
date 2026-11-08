@@ -42,7 +42,7 @@ cat <<EOF > ~/.config/kcm-about-distrorc
 [General]
 Name=$OS_NAME
 LogoPath=preferences-system-linux
-Website=
+Website=https://github.com/jaymeson12/adams-os.git
 EOF
 
 echo "Configuring Fastfetch..."
