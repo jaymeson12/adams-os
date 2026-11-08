@@ -24,9 +24,13 @@ fi
 
 # Determine the custom OS name based on the distro ID
 if [ "$DISTRO_ID" = "opensuse-tumbleweed" ]; then
-    OS_NAME="Adams OS Rolling"
+    OS_NAME="Adams OS"
+    OS_CHANNEL="Rolling"
+    OS_VERSION="26.11" # Update as new versions get released
 elif [ "$DISTRO_ID" = "opensuse-leap" ]; then
-    OS_NAME="Adams OS Stable"
+    OS_NAME="Adams OS"
+    OS_CHANNEL="Stable"
+    OS_VERSION="26.11"
 else
     echo "X Error: Unsupported distribution ($DISTRO_ID)."
     echo "This script only supports openSUSE Tumbleweed and openSUSE Leap."
@@ -41,6 +45,8 @@ echo "Configuring KDE Info Centre..."
 cat <<EOF > ~/.config/kcm-about-distrorc
 [General]
 Name=$OS_NAME
+Version=$OS_VERSION
+Variant=$OS_CHANNEL
 LogoPath=preferences-system-linux
 Website=https://github.com/jaymeson12/adams-os.git
 EOF
@@ -52,9 +58,9 @@ mkdir -p ~/.config/fastfetch
 if [ "$DISTRO_ID" = "opensuse-tumbleweed" ]; then
     cp fastfetch/fastfetch-tumbleweed.jsonc ~/.config/fastfetch/config.jsonc
     # Optional: Inject the Tumbleweed branding
-    sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME/g" ~/.config/fastfetch/config.jsonc
+    sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME $OS_CHANNEL/g" ~/.config/fastfetch/config.jsonc
 elif [ "$DISTRO_ID" = "opensuse-leap" ]; then
     cp fastfetch/fastfetch-leap.jsonc ~/.config/fastfetch/config.jsonc
     # Optional: Inject the Leap branding
-    sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME/g" ~/.config/fastfetch/config.jsonc
+    sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME $OS_CHANNEL/g" ~/.config/fastfetch/config.jsonc
 fi
