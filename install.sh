@@ -89,9 +89,9 @@ EOF
 kwriteconfig6 --file konsolerc --group "Desktop Entry" --key DefaultProfile "AdamsOS.profile"
 
 # ----- Wallpaper setting (Elarun) -----
-echo "Setting Elarun wallpaper, the last default from KDE 4 ..."
+echo "Setting Elarun wallpaper, the last default from KDE 4, and copying over good old Plasma 5 wallpapers ..."
 mkdir -p ~/.local/share/wallpapers
-cp Wallpaper/Elarun.png ~/.local/share/wallpapers
+cp Wallpaper/* ~/.local/share/wallpapers
 plasma-apply-wallpaperimage ~/.local/share/wallpapers/Elarun.png
 
 # ----- Configuring virtual desktops -----
