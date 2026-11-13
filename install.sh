@@ -64,3 +64,43 @@ elif [ "$DISTRO_ID" = "opensuse-leap" ]; then
     # Optional: Inject the Leap branding
     sed -i "s/PLACEHOLDER_OS_NAME/$OS_NAME $OS_CHANNEL/g" ~/.config/fastfetch/config.jsonc
 fi
+
+# ----- Applying Breeze Classic -----
+echo "Applying Breeze Classic colour scheme..."
+plasma-apply-lookandfeel --apply org.kde.breeze.desktop
+plasma-apply-colorscheme BreezeClassic
+
+# ----- Setting zsh as default shell IF INSTALLED ON THE SYSTEM -----
+if command -v zsh >/dev/null 2>&1; then
+    SHELL_CMD="Command=/usr/bin/zsh"
+else
+    SHELL_CMD=""
+fi
+
+cat <<EOF > ~/.local/share/konsole/AdamsOS.profile
+[General]
+Name=Adams OS
+Parent=FALLBACK/
+$SHELL_CMD
+
+[Appearance]
+Font=DejaVu Sans Mono,10
+EOF
+kwriteconfig6 --file konsolerc --group "Desktop Entry" --key DefaultProfile "AdamsOS.profile"
+
+# ----- Wallpaper setting (Elarun) -----
+echo "Setting Elarun wallpaper, the last default from KDE 4 ..."
+mkdir -p ~/.local/share/wallpapers
+cp Wallpaper/Elarun.png ~/.local/share/wallpapers
+plasma-apply-wallpaperimage ~/.local/share/wallpapers/Elarun.png
+
+# ----- Configuring virtual desktops -----
+kwriteconfig6 --file kwinrc --group Desktops --key Number 4
+
+# ----- Enabling Breeze titlebar gradient -----
+kwriteconfig6 --file kwinrc --group org.kde.breeze.decoration --key DrawBackgroundGradient true
+
+# ----- Refresh Plasma -----
+echo "Refreshing the Plasma desktop ..."
+kquitapp6 plasmashell && kstart plasmashell &
+echo "Adams OS setup complete.  Please log out and back in for all changes to take effect."
