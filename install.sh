@@ -120,6 +120,5 @@ echo "Enable / restore ADAMS OS layout ..."
 cp ASSETS/plasma-org.kde.plasma.desktop-appletsrc ~/.config/
 
 # ----- Refresh Plasma -----
-echo "Refreshing the Plasma desktop ..."
-kquitapp6 plasmashell && kstart plasmashell &
-echo "Adams OS setup complete.  Please log out and back in for all changes to take effect."
+echo "Refreshing the Plasma desktop and rebooting the system ..."
+kquitapp6 plasmashell && systemctl reboot &
