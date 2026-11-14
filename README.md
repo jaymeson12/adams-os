@@ -13,9 +13,9 @@ Adams OS is a personal backup of my UI customisations on openSUSE Tumbleweed wit
 Note that Adams OS is a **user-level** script.  It will not install the above programs for you as using **sudo** is against the ethos and goals of Adams OS.
 
 ## Usage
-1. Clone the project: git clone https://github.com/jaymeson12/adams-os.git.
-2. Make the install script executable (chmod +x install.sh).
-3. Run the script at the user level **not with sudo** (./install.sh).
+1. Clone the project: `git clone https://github.com/jaymeson12/adams-os.git`.
+2. Make the install script executable (`chmod +x install.sh`).
+3. Run the script at the user level **not with sudo** (`./install.sh`).
 4. Log out and log back in (or reboot) to see the changes.
 
 Note: The Plasma desktop customisations are based on a backup of my personal desktop system.  Results may vary and are completely at your risk.  If the desktop widgets, panels, etc. are in strange places, you might have to enter Edit Mode on Plasma and adjust the widgets and panels manually.
