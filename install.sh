@@ -70,6 +70,15 @@ echo "Applying Breeze Classic colour scheme..."
 plasma-apply-lookandfeel --apply org.kde.breeze.desktop
 plasma-apply-colorscheme BreezeClassic
 
+# ----- Install nerd fonts -----
+NERDFONTS/nerdfonts.sh
+
+# ----- Install widgets -----
+echo "Installing quickclock and Kickoff Classic"
+mkdir -p ~/.local/share/plasma/plasmoids/
+cp -r ASSETS/io.github.kevinbudz.quickclock ~/.local/share/plasma/plasmoids/
+cp -r ASSETS/org.kde.plasma.kickoffclassic ~/.local/share/plasma/plasmoids/
+
 # ----- Setting zsh as default shell IF INSTALLED ON THE SYSTEM -----
 if command -v zsh >/dev/null 2>&1; then
     SHELL_CMD="Command=/usr/bin/zsh"
@@ -84,9 +93,15 @@ Parent=FALLBACK/
 $SHELL_CMD
 
 [Appearance]
-Font=DejaVu Sans Mono,10
+Font=DejaVuSansM Nerd Font Mono,10
 EOF
 kwriteconfig6 --file konsolerc --group "Desktop Entry" --key DefaultProfile "AdamsOS.profile"
+# Hide the main toolbar
+kwriteconfig6 --file konsolerc --group MainWindow --key ShowToolbar false
+# Hide the Session Toolbar (the tabs bar, etc.)
+kwriteconfig6 --file konsolerc --group MainWindow --key ShowSessionToolbar false
+# Show the menu bar
+kwriteconfig6 --file konsolerc --group MainWindow --key ShowMenuBar true
 
 # ----- Wallpaper setting (Elarun) -----
 echo "Setting Elarun wallpaper, the last default from KDE 4, and copying over good old Plasma 5 wallpapers ..."
@@ -99,6 +114,10 @@ kwriteconfig6 --file kwinrc --group Desktops --key Number 4
 
 # ----- Enabling Breeze titlebar gradient -----
 kwriteconfig6 --file kwinrc --group org.kde.breeze.decoration --key DrawBackgroundGradient true
+
+# ----- Enable my custom desktop layout -----
+echo "Enable / restore ADAMS OS layout ..."
+cp ASSETS/plasma-org.kde.plasma.desktop-appletsrc ~/.config/
 
 # ----- Refresh Plasma -----
 echo "Refreshing the Plasma desktop ..."
