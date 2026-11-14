@@ -103,12 +103,6 @@ kwriteconfig6 --file konsolerc --group MainWindow --key ShowSessionToolbar false
 # Show the menu bar
 kwriteconfig6 --file konsolerc --group MainWindow --key ShowMenuBar true
 
-# ----- Wallpaper setting (Elarun) -----
-echo "Setting Elarun wallpaper, the last default from KDE 4, and copying over good old Plasma 5 wallpapers ..."
-mkdir -p ~/.local/share/wallpapers/
-cp Wallpaper/* ~/.local/share/wallpapers/
-plasma-apply-wallpaperimage ~/.local/share/wallpapers/Elarun.png
-
 # ----- Configuring virtual desktops -----
 kwriteconfig6 --file kwinrc --group Desktops --key Number 4
 
@@ -118,6 +112,25 @@ kwriteconfig6 --file kwinrc --group org.kde.breeze.decoration --key DrawBackgrou
 # ----- Enable my custom desktop layout -----
 echo "Enable / restore ADAMS OS layout ..."
 cp ASSETS/plasma-org.kde.plasma.desktop-appletsrc ~/.config/
+
+# ----- Wallpaper setting (Elarun) -----
+echo "Setting Elarun wallpaper, the last default from KDE 4, and copying over good old Plasma 5 wallpapers ..."
+mkdir -p ~/.local/share/wallpapers/
+cp Wallpaper/* ~/.local/share/wallpapers/
+# Fallback: Write the wallpaper setting directly to the config file
+WALLPAPER_PATH="$HOME/.local/share/wallpapers/Elarun.png"
+
+# Find the containment ID for the desktop (usually 1, but this finds it dynamically)
+CONTAINMENT_ID=$(kreadconfig6 --file "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" --group Containments --key "Desktop" 2>/dev/null || echo "1")
+
+# Set the image plugin and the path
+kwriteconfig6 --file "$HOME/.config/plasma-org.kde.plasma.desktop-appletsrc" \
+  --group "Containments" --group "$CONTAINMENT_ID" --group "Wallpaper" --group "org.kde.image" --group "General" \
+  --key "Image" "file://$WALLPAPER_PATH"
+
+# Ensure the wallpaper plugin is set to the image plugin
+kwriteconfig6 --file "$HOME/.config/plasma-org.kde.plasma.desktop-appellantsrc" \
+  --group "Containments" --group "$CONTAINMENT_ID" --group "Wallpaper" --key "plugin" "org.kde.image"
 
 # ----- Refresh Plasma -----
 echo "Refreshing the Plasma desktop and rebooting the system ..."
