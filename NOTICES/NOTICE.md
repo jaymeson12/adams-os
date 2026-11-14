@@ -118,7 +118,7 @@
 - Author: Ryan L. McIntyre (ryanoasis)
 - Source: https://github.com/ryanoasis/nerd-fonts.git
 - Licence: MIT licence (Nerd Fonts original source code files (such as `.sh`, `.py`, `font-patcher` and others)) and SIL OPEN FONT LICENSE Version 1.1 (Nerd Fonts source fonts, patched fonts, and folders with explict OFL SIL files)
-- Files included: NERDFONTS/nerdfonts.sh (to git clone the latest nerd fonts and install at the user level on the system)
+- Files included: NERDFONTS/nerdfonts.sh (a shell script to `git clone` the latest nerd fonts and install at the user level on the system)
 
 ---------------------------------------------------------------------------
 16. Kickoff-Classic
