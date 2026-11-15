@@ -12,7 +12,7 @@
         {
             "type": "os",
             "key": "OS",
-            "format": "PLACEHOLDER_OS_NAME {arch}"
+            "format": "PLACEHOLDER_OS_NAME 26.11 {arch}"
         },
         "kernel",
         "uptime",

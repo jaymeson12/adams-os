@@ -123,7 +123,7 @@
     {
       "type": "os",
       "keyIcon": "",
-      "format": "PLACEHOLDER_OS_NAME {arch}"
+      "format": "PLACEHOLDER_OS_NAME 26.11 {arch}"
     },
     {
       "type": "kernel",
