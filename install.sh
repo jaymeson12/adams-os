@@ -45,7 +45,6 @@ echo "Configuring KDE Info Centre..."
 cat <<EOF > ~/.config/kcm-about-distrorc
 [General]
 Name=$OS_NAME
-Version=$OS_VERSION
 Variant=$OS_CHANNEL
 LogoPath=preferences-system-linux
 Website=https://github.com/jaymeson12/adams-os.git
